@@ -1,7 +1,13 @@
 import { Router } from 'express';
 import 'dotenv/config';
-
-const PORT = process.env.PORT;
-const DB_URL = process.env.DB_URL;
+import { addTask, getTaskById, getTasks } from '../controller/tasks.js';
 
 const tasksRouter = Router();
+
+tasksRouter.get('/tasks', getTasks);
+
+tasksRouter.get('/tasks/:id', getTaskById);
+
+tasksRouter.post('/tasks', addTask);
+
+export default tasksRouter;
