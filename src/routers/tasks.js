@@ -5,7 +5,6 @@ import {
   getTaskById,
   getTasks,
   removeTask,
-  updateOrCreateTask,
   updateTask,
 } from '../controllers/tasks.js';
 
@@ -20,7 +19,5 @@ tasksRouter.post('/', addTask);
 tasksRouter.delete('/:id', removeTask);
 
 tasksRouter.patch('/:id', updateTask);
-
-tasksRouter.put('/:id', updateOrCreateTask);
 
 export default tasksRouter;

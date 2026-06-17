@@ -1,4 +1,3 @@
-// import createHttpError from 'http-errors';
 import { Task } from '../db/models/Tasks.js';
 import { idNotFound } from '../constants.js';
 
@@ -44,20 +43,7 @@ export const updateTask = async (req, res) => {
     returnDocument: 'after',
   });
   if (!result) {
-    // throw createHttpError(404, idNotFound);
     res.status(404).json(idNotFound);
   }
   res.json(result);
 };
-
-// export const updateOrCreateTask = async (req, res) => {
-//   const { id } = req.params;
-//   const body = req.body;
-//   const result = await Task.findByIdAndUpdate(id, body, {
-//     returnDocument: 'after',
-//     upsert: true,
-//     includeResultMetadata: true,
-//   });
-//   const isUpdated = result.lastErrorObject.updatedExisting;
-//   res.status(isUpdated ? 200 : 201).json(result.value);
-// };
