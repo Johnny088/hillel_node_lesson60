@@ -50,14 +50,14 @@ export const updateTask = async (req, res) => {
   res.json(result);
 };
 
-export const updateOrCreateTask = async (req, res) => {
-  const { id } = req.params;
-  const body = req.body;
-  const result = await Task.findByIdAndUpdate(id, body, {
-    returnDocument: 'after',
-    upsert: true,
-    includeResultMetadata: true,
-  });
-  const isUpdated = result.lastErrorObject.updatedExisting;
-  res.status(isUpdated ? 200 : 201).json(result.value);
-};
+// export const updateOrCreateTask = async (req, res) => {
+//   const { id } = req.params;
+//   const body = req.body;
+//   const result = await Task.findByIdAndUpdate(id, body, {
+//     returnDocument: 'after',
+//     upsert: true,
+//     includeResultMetadata: true,
+//   });
+//   const isUpdated = result.lastErrorObject.updatedExisting;
+//   res.status(isUpdated ? 200 : 201).json(result.value);
+// };
