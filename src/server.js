@@ -3,18 +3,18 @@ import 'dotenv/config';
 import { connectDb } from './db/connectDb.js';
 import tasksRouter from './routers/tasks.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
-import { errorHandler } from './middlewares/errorHandler.js';
+// import { errorHandler } from './middlewares/errorHandler.js';
 
 const PORT = process.env.PORT;
 
 const app = express();
 
 app.use(express.json());
-app.use(tasksRouter);
+app.use('/tasks', tasksRouter);
 
 app.use(notFoundHandler);
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
 await connectDb();
 
