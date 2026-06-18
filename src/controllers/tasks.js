@@ -12,8 +12,7 @@ export const getTaskById = async (req, res) => {
   const task = await Task.findById(id);
 
   if (!task) {
-    createHttpError(404, idNotFound);
-    return;
+    throw createHttpError(404, idNotFound);
   }
 
   res.json(task);
@@ -30,8 +29,7 @@ export const removeTask = async (req, res) => {
   const task = await Task.findByIdAndDelete(id);
 
   if (!task) {
-    createHttpError(404, idNotFound);
-    return;
+    throw createHttpError(404, idNotFound);
   }
 
   res.json(task);
@@ -44,7 +42,7 @@ export const updateTask = async (req, res) => {
     returnDocument: 'after',
   });
   if (!result) {
-    createHttpError(404, idNotFound);
+    throw createHttpError(404, idNotFound);
   }
   res.json(result);
 };
