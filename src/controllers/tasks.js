@@ -1,5 +1,6 @@
 import { Task } from '../db/models/Tasks.js';
 import { idNotFound } from '../constants.js';
+import createHttpError from 'http-errors';
 
 export const getTasks = async (req, res) => {
   const tasks = await Task.find();
@@ -11,7 +12,7 @@ export const getTaskById = async (req, res) => {
   const task = await Task.findById(id);
 
   if (!task) {
-    res.status(404).json(idNotFound);
+    createHttpError(404, idNotFound);
     return;
   }
 
@@ -29,7 +30,7 @@ export const removeTask = async (req, res) => {
   const task = await Task.findByIdAndDelete(id);
 
   if (!task) {
-    res.status(404).json(idNotFound);
+    createHttpError(404, idNotFound);
     return;
   }
 
@@ -43,7 +44,7 @@ export const updateTask = async (req, res) => {
     returnDocument: 'after',
   });
   if (!result) {
-    res.status(404).json(idNotFound);
+    createHttpError(404, idNotFound);
   }
   res.json(result);
 };
